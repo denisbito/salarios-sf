@@ -1,16 +1,150 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<title>Salários do Senado Federal</title>
 	<link href="css/estilos.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/protovis-r3.2.js"></script>
 </head>
 
 <body>
+	<div>
+		<h3>Salários do Senado Federal</h3>
+	</div>
+	<div>
+		<script type="text/javascript">
+			/* DADOS */
+			var arrTecnico = [
+					// TÉCNICO
+					13833.64, 13990.41, 14152.01, 14318.64, 14490.41,
+					14667.48, 14850.04, 15038.27, 15232.28, 15432.32,
+					15461.39, 15668.48, 15882.01, 16102.12, 16329.05,
+					16563.02
+			];
+			var arrAnalista = [
+					// ANALISTA
+					18440.64, 18681.81, 18930.45, 19186.78, 19451.06,
+					19723.49, 20004.35, 20293.89, 20592.40, 20900.13,
+					20900.13, 20900.13, 20900.13, 20900.13, 20900.13,
+					20900.13
+			];
+			var arrConsultor = [
+					// CONSULTOR E ADVOGADO
+					23826.57, 24107.43, 24396.97, 24695.48, 25003.21,
+					25003.21, 25003.21, 25003.21, 25003.21, 25003.21,
+					25003.21, 25003.21, 25003.21, 25003.21, 25003.21,
+					25003.21
+			];
+			var anos = 15;
+			
+			var myData = [ [], [], [] ];
+			for (var i = 0; i <= anos; i++) {
+				myData[0][i] = { x: i, y: arrTecnico[i] };
+				myData[1][i] = { x: i, y: arrAnalista[i] - arrTecnico[i] };
+				myData[2][i] = { x: i, y: arrConsultor[i] - arrAnalista[i] };
+			}
+			
+			/* Sizing and scales. */
+			var w = 400,
+				h = 240,
+				x = pv.Scale.linear(0, 15).range(0, w),
+				y = pv.Scale.linear(0, 30000).range(0, h);
+
+			/* The root panel. */
+			var vis = new pv.Panel()
+				.width(w)
+				.height(h)
+				.bottom(20)
+				.left(40)
+				.right(10)
+				.top(5);
+
+			/* X-axis and ticks. */
+			vis.add(pv.Rule)
+				.data(x.ticks())
+				.visible(function(d) d)
+				.left(x)
+				.bottom(-5)
+				.height(5)
+				.anchor("bottom").add(pv.Label)
+				.text(x.tickFormat);
+
+			/* The stack layout. */
+			vis.add(pv.Layout.Stack)
+				.layers(myData)
+				.x(function(d) x(d.x))
+				.y(function(d) y(d.y))
+				.layer.add(pv.Area);
+
+			/* Y-axis and ticks. */
+			vis.add(pv.Rule)
+				.data(y.ticks(3))
+				.bottom(y)
+				.strokeStyle(function(d) d ? "rgba(128,128,128,.2)" : "#000")
+				.anchor("left").add(pv.Label)
+				.text(y.tickFormat);
+
+			vis.render();
+		</script>
+	</div>
+	<div style="display: none">
+		<h4>Exemplo do Protovis</h4>
+		<script type="text/javascript">
+			/* DADOS */
+			var data = pv.range(4).map(function() {
+				return pv.range(0, 10, 1).map(function(x) {
+					return {x: x, y: Math.sin(x) + Math.random() * .5 + 2};
+				});
+			});
+
+			/* Sizing and scales. */
+			var w = 400,
+				h = 200,
+				x = pv.Scale.linear(0, 9.9).range(0, w),
+				y = pv.Scale.linear(0, 14).range(0, h);
+
+			/* The root panel. */
+			var vis = new pv.Panel()
+				.width(w)
+				.height(h)
+				.bottom(20)
+				.left(20)
+				.right(10)
+				.top(5);
+
+			/* X-axis and ticks. */
+			vis.add(pv.Rule)
+				.data(x.ticks())
+				.visible(function(d) d)
+				.left(x)
+				.bottom(-5)
+				.height(5)
+				.anchor("bottom").add(pv.Label)
+				.text(x.tickFormat);
+
+			/* The stack layout. */
+			vis.add(pv.Layout.Stack)
+				.layers(data)
+				.x(function(d) x(d.x))
+				.y(function(d) y(d.y))
+				.layer.add(pv.Area);
+
+			/* Y-axis and ticks. */
+			vis.add(pv.Rule)
+				.data(y.ticks(3))
+				.bottom(y)
+				.strokeStyle(function(d) d ? "rgba(128,128,128,.2)" : "#000")
+				.anchor("left").add(pv.Label)
+				.text(y.tickFormat);
+
+			vis.render();
+		</script>
+	</div>
 </body>
+
 </html>
 
