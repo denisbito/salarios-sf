@@ -1,0 +1,22 @@
+/*
+ * GENERAL STYLES AND RESETS
+ */
+body {
+	margin: 1em;
+}
+
+/*
+ * TEXT AND TITLES
+ */
+.title1 {
+	border: 1px solid #AAAAAA;
+	background-color: #9CC4E4;
+	padding: .4em;
+}
+
+.title2 {
+	border: 1px solid #AAAAAA;
+	background-color: #F8A896;
+	padding: .2em;
+}
+
