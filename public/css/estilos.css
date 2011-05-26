@@ -5,18 +5,22 @@ body {
 	margin: 1em;
 }
 
+ul {
+	list-style-type: square;
+}
+
 /*
  * TEXT AND TITLES
  */
 .title1 {
 	border: 1px solid #AAAAAA;
-	background-color: #9CC4E4;
+	background-color: #AFCFE9;
 	padding: .4em;
 }
 
 .title2 {
 	border: 1px solid #AAAAAA;
-	background-color: #F8A896;
+	background-color: #FABBAE;
 	padding: .2em;
 }
 
