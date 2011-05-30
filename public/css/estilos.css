@@ -14,13 +14,14 @@ ul {
  */
 .title1 {
 	border: 1px solid #AAAAAA;
-	background-color: #AFCFE9;
+	background-color: #4E4D4A;
+	color: #F5F5F5;
 	padding: .4em;
 }
 
 .title2 {
 	border: 1px solid #AAAAAA;
-	background-color: #FABBAE;
+	background-color: #DCDCDC;
 	padding: .2em;
 }
 
