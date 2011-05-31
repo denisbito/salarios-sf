@@ -1,0 +1,131 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<title>Salários do Senado Federal</title>
+	<link href="css/estilos.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/highcharts/highcharts.js"></script>
+	
+	<script type="text/javascript">
+		/* DADOS */
+		var arrTecnico = [
+				// TÉCNICO
+				13833.64, 13990.41, 14152.01, 14318.64, 14490.41,
+				14667.48, 14850.04, 15038.27, 15232.28, 15432.32,
+				15461.39, 15668.48, 15882.01, 16102.12, 16329.05,
+				16563.02
+		];
+		var arrAnalista = [
+				// ANALISTA
+				18440.64, 18681.81, 18930.45, 19186.78, 19451.06,
+				19723.49, 20004.35, 20293.89, 20592.40, 20900.13,
+				20900.13, 20900.13, 20900.13, 20900.13, 20900.13,
+				20900.13
+		];
+		var arrConsultor = [
+				// CONSULTOR E ADVOGADO
+				23826.57, 24107.43, 24396.97, 24695.48, 25003.21,
+				25003.21, 25003.21, 25003.21, 25003.21, 25003.21,
+				25003.21, 25003.21, 25003.21, 25003.21, 25003.21,
+				25003.21
+		];
+		
+		/* MONTAGEM DO GRÁFICO */
+		var chart;
+		$(document).ready(function() {
+			chart = new Highcharts.Chart({
+				chart: {
+					renderTo: 'container',
+					defaultSeriesType: 'area'
+				},
+				title: {
+					text: 'Progressão do salário com o tempo de serviço'
+				},
+				subtitle: {
+					text: 'fonte: www.senado.gov.br'
+				},
+				xAxis: {
+					categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'],
+					tickmarkPlacement: 'on',
+					title: {
+						enabled: false
+					}
+				},
+				yAxis: {
+					title: {
+						text: 'Salário (R$)'
+					},
+					labels: {
+						formatter: function() {
+							return this.value / 1000;
+						}
+					}
+				},
+				tooltip: {
+					formatter: function() {
+						return '' + Highcharts.numberFormat(this.y, 0, ',') + ' reais';
+					}
+				},
+				plotOptions: {
+					area: {
+						stacking: 'normal',
+						lineColor: '#666666',
+						lineWidth: 1,
+						marker: {
+							lineWidth: 1,
+							lineColor: '#666666'
+						}
+					}
+				},
+				series: [{
+					name: 'Consultor',
+					data: arrConsultor
+				}, {
+					name: 'Analista',
+					data: arrAnalista
+				}, {
+					name: 'Técnico',
+					data: arrTecnico
+				}]
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div>
+		<h3 class="title1">Salários do Senado Federal</h3>
+	</div>
+	
+	<div>
+		<ol>
+			<li><a href="#progressao">Progressão com o tempo de serviço</a></li>
+			<li><a href="#referencias">Referências</a></li>
+		</ol>
+	</div>
+	
+	<div>
+		<a name="progressao"></a>
+		<h4 class="title2">progressão do salário com o tempo de serviço (em anos)</h4>
+		<div id="container" style="width: 600px; height: 300px; margin: 0 auto"></div>
+	</div>
+	
+	<div>
+		<a name="referencias"></a>
+		<h4 class="title2">Referências</h4>
+		
+		<ul>
+			<li><a href="http://www.senado.gov.br/transparencia/SECrh/QuadroPessoal_e_EstruturaRemuneratoria.pdf">http://www.senado.gov.br/transparencia/SECrh/QuadroPessoal_e_EstruturaRemuneratoria.pdf</a>. PDF de onde os dados foram extraídos.</li>
+			<li><a href="http://www.highcharts.com/">Highcharts</a>. Toolkit gráfico para visualização de dados, escrito em JavaScript.</li>
+			
+		</ul>
+	</div>
+</body>
+
+</html>
+
