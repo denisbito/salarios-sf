@@ -41,7 +41,7 @@
 			chart = new Highcharts.Chart({
 				chart: {
 					renderTo: 'container',
-					defaultSeriesType: 'area'
+					defaultSeriesType: 'areaspline'
 				},
 				title: {
 					text: 'Progressão do salário com o tempo de serviço'
@@ -62,7 +62,7 @@
 					},
 					labels: {
 						formatter: function() {
-							return this.value / 1000;
+							return this.value;
 						}
 					}
 				},
@@ -112,7 +112,7 @@
 	<div>
 		<a name="progressao"></a>
 		<h4 class="title2">progressão do salário com o tempo de serviço (em anos)</h4>
-		<div id="container" style="width: 600px; height: 300px; margin: 0 auto"></div>
+		<div id="container" style="width: 600px; height: 340px; margin: 0 auto"></div>
 	</div>
 	
 	<div>
